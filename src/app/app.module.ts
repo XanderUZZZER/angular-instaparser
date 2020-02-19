@@ -5,11 +5,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from "./app.component";
+import { CookieComponent } from './cookie/cookie.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule],
-  declarations: [AppComponent],
+  declarations: [AppComponent, CookieComponent],
   providers: [ CookieService ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, CookieComponent]
 })
 export class AppModule {}

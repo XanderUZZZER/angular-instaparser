@@ -1,0 +1,10 @@
+/* Add application styles & imports to this file! */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+*{
+font-family: 'Roboto', sans-serif;
+}
+
+body{
+  width: 70%;
+  margin: 0 auto;
+}

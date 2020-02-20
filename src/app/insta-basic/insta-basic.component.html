@@ -1,0 +1,17 @@
+<p>
+	insta-basic works!
+</p>
+<button (click)="getUserNode()">User node</button>
+<p>auth code</p>
+<p>{{user.token.authorizationCode}}</p>
+<hr />
+<p>Access token</p>
+<p>{{user.token.accessToken}}</p>
+<hr />
+<p>user node</p>
+<ul>
+	<li>{{user.node.id}}</li>
+  <li>{{user.node.username}}</li>
+  <li>{{user.node.account_type}}</li>
+</ul>
+<button (click)="getUserMedia()">User media</button>

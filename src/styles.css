@@ -8,3 +8,9 @@ body{
   width: 70%;
   margin: 0 auto;
 }
+
+.card{
+  background: violet;
+  border-radius: 10px;
+  padding: .5rem;
+}

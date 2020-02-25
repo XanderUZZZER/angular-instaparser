@@ -1,11 +1,16 @@
-<div class="card">
-	<p>App component</p>
-	<a
-		href="https://www.facebook.com/v6.0/dialog/oauth?client_id=192282568679644&redirect_uri=https://angular-instaparser.stackblitz.io/&state={state-param}">Link</a>
-</div>
+<button type="button" class="btn" (click)="submitLogin();">Login with facebook</button>
 
 <div class="card">
 	<p>App component</p>
-	<a
-		href="GET https://graph.facebook.com/v6.0/oauth/access_token?client_id=192282568679644&redirect_uri=https://angular-instaparser.stackblitz.io/&client_secret=a612e8493cdb6014069858fa1b5a1f04&code=AQDNoKlCToS_VKjSUfgz73_27_gipBHvE521U1BmX8OM3iJk2TPKAY8V2e8DrDAgP-PBEww8DMr_xLk-LbMdyzqWNFOPT0tsdBw93YNeX_12I0hRoWq6wvnyJ0jmeyvpXGFVQ9zBPbwGlwLMHI7bcTuwXaReS3qfHci16kMGn46MYFbcyH5A5j20YzagyMXRRdNQkkC1DFNc9p8KyWbci43E03XYr4Yo-G9ig6kQ8hOkagTF5PAmFO7JVxzJohDb9lIaJkCGCjcplZsjrOeI_ZfF4i0x3UGd_WKUtLmmrcOIE8WZ50jPKkBTAM6OsEnTXDc">Link</a>
 </div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+	src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v6.0&appId=192282568679644&autoLogAppEvents=1">
+</script>
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with"
+	data-auto-logout-link="true" data-use-continue-as="false"></div>
+<div class="card">
+	<p>App component</p>
+</div>
+
+<button type="button" class="btn" (click)="submitLogout();">Logout of facebook</button>

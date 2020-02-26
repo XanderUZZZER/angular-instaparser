@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { FacebookSdk } from "./instagram-graph-api/facebook-sdk";
-import { InstagramGraphApi } from "./instagram-graph-api/facebook-sdk";
+// import { FacebookSdk } from "./instagram-graph-api/facebook-sdk";
+// import { InstagramGraphApi } from "./instagram-graph-api/instagram-graph-api";
+import { InstagramGraphApi } from "./instagram-graph-api/instagram-graph-api";
 //declare var FB: any;
 
 @Component({
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
     // FB.getLoginStatus(function(response) {
     //   statusChangeCallback(response);
     // });
-    FacebookSdk.info();
+    // FacebookSdk.info();
     InstagramGraphApi.info();
   }
 }

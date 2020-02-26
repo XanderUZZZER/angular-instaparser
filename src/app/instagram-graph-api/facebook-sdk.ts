@@ -1,6 +1,6 @@
 export class FacebookSdk {
   loadSdk() {
-    window.fbAsyncInit = function() {
+    (window as any).fbAsyncInit = function() {
       FB.init({
         appId: "{your-app-id}",
         cookie: true,

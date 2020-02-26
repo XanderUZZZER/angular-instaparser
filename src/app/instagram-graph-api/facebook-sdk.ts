@@ -7,7 +7,6 @@ export class FacebookSdk {
         xfbml: true,
         version: "{api-version}"
       });
-
       FB.AppEvents.logPageView();
     };
 
@@ -24,7 +23,7 @@ export class FacebookSdk {
     })(document, "script", "facebook-jssdk");
   }
 
-  info(){
-    console.log('SDK');
+  info() {
+    console.log("SDK");
   }
 }

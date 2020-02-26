@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-declare var FB: any;
+import { FacebookSdk } from "./instagram-graph-api/facebook-sdk";
+import { InstagramGraphApi } from "./instagram-graph-api/facebook-sdk";
+//declare var FB: any;
 
 @Component({
   selector: "my-app",
@@ -7,5 +9,11 @@ declare var FB: any;
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {}
+  ngOnInit() {
+    // FB.getLoginStatus(function(response) {
+    //   statusChangeCallback(response);
+    // });
+    FacebookSdk.info();
+    InstagramGraphApi.info();
+  }
 }

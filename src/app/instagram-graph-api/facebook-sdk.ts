@@ -13,10 +13,11 @@ export class FacebookSdk {
         version: "v6.0",
         status: true
       });
-      //////??????????????????
-      //FB.AppEvents.logPageView();
 
       FB.getLoginStatus(response => statusChangeCallback(response));
+      //FB.getLoginStatus(response => {console.log(h);statusChangeCallback(response);});
+      FB.Event.subscribe("auth.login", login_event);
+      FB.Event.subscribe("auth.logout", logout_event);
     };
 
     (function(d, s, id) {
@@ -41,6 +42,17 @@ export class FacebookSdk {
         console.log("Not logged in");
       }
     }
+    var login_event = function(response) {
+      console.log("login_event");
+      console.log("login_status", response.status);
+      console.log(response);
+    };
+
+    var logout_event = function(response) {
+      console.log("logout_event");
+      console.log("login_status", response.status);
+      console.log(response);
+    };
   }
 
   Login() {

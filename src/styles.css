@@ -9,6 +9,17 @@ body{
   margin: 0 auto;
 }
 
+button{
+  display: block;
+  width: 40%;
+  height: 40px;
+  margin: 10px;
+  
+  border-radius: 0;
+  border:2px solid red;
+  background: none;
+}
+
 .card{
   background: violet;
   border-radius: 10px;

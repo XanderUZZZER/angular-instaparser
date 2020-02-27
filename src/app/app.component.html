@@ -1,2 +1,14 @@
 <p>Root</p>
 
+<button (click)='Login()'>Login</button>
+<button (click)='Logout()'>Logout</button>
+<button (click)='GetStatus()'>Get status</button>
+<button (click)='TestApi()'>Test API</button>
+<button (click)='Info()'>info</button>
+
+<div id="status">
+</div>
+
+<div id="fb-root"></div>
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v6.0&appId=192282568679644&autoLogAppEvents=1"></script>

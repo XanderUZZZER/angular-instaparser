@@ -1,5 +1,4 @@
 declare var FB: any;
-declare var globalFB: any;
 
 export class FacebookSdk {
   response: any;
@@ -11,13 +10,16 @@ export class FacebookSdk {
         cookie: true,
         xfbml: true,
         version: "v6.0",
-        status: true
+        status: true // check auth status onInit
       });
 
-      FB.getLoginStatus(response => statusChangeCallback(response));
+      //FB.getLoginStatus(response => statusChangeCallback(response));
       //FB.getLoginStatus(response => {console.log(h);statusChangeCallback(response);});
       FB.Event.subscribe("auth.login", login_event);
       FB.Event.subscribe("auth.logout", logout_event);
+      FB.Event.subscribe("auth.statusChange", authStatusChange_event);
+      FB.Event.subscribe("xfbml.render", finished_rendering);
+      FB.XFBML.parse();
     };
 
     (function(d, s, id) {
@@ -43,15 +45,32 @@ export class FacebookSdk {
       }
     }
     var login_event = function(response) {
-      console.log("login_event");
-      console.log("login_status", response.status);
-      console.log(response);
+      console.log("\n-------------Start of login_event---------------");
+      console.log("login_event occured, resp status:", response.status);
+      // FB.XFBML.parse();
+      console.log("-------------End of login_event---------------\n");
     };
 
     var logout_event = function(response) {
-      console.log("logout_event");
-      console.log("login_status", response.status);
-      console.log(response);
+      console.log("\n-------------Start of logout_event---------------");
+      console.log("logout_event occured, resp status:", response.status);
+      //FB.XFBML.parse();
+      console.log("-------------End of logout_event---------------\n");
+    };
+
+    var authStatusChange_event = function(response) {
+      console.log(
+        "\n-------------Start of authStatusChange_event---------------"
+      );
+      console.log("Auth status changed to: ", response.status);
+
+      console.log(
+        "-------------End of authStatusChange_event---------------\n"
+      );
+    };
+
+    var finished_rendering = function() {
+      console.log("finished rendering plugins");
     };
   }
 
@@ -61,12 +80,13 @@ export class FacebookSdk {
     FB.login(response => {
       console.log("submitLogin", response);
       this.response = response;
-      console.log("this.response", this.response);
+      console.log("this.response", this.response.authResponse);
       if (response.authResponse) {
         console.log("response.authResponse", response.authResponse);
       } else {
         console.log("User login failed");
       }
+      FB.XFBML.parse();
     });
   }
 
@@ -83,11 +103,14 @@ export class FacebookSdk {
       } else {
         console.log("User logout fails");
       }
+      FB.XFBML.parse();
     });
   }
 
   GetStatus() {
-    FB.getLoginStatus(response => this.statusChangeCallback(response));
+    FB.getLoginStatus(response => {
+      this.statusChangeCallback(response);
+    });
   }
 
   testAPI() {
@@ -97,6 +120,7 @@ export class FacebookSdk {
       console.log("Successful login for: " + response.name);
       document.getElementById("status").innerHTML =
         "Thanks for logging in, " + response.name + "!";
+      this.response = response;
     });
   }
 
@@ -105,10 +129,14 @@ export class FacebookSdk {
     if (response.status === "connected") {
       console.log("Logged in and authorized");
     } else if (response.status === "not_authorized") {
-      console.log("Not authorized");
+      console.log("Logged in, not authorized");
     } else {
       console.log("Not logged in");
     }
+  }
+
+  RenderPlugins() {
+    FB.XFBML.parse();
   }
 
   info() {

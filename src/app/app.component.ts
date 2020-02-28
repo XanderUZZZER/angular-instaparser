@@ -8,10 +8,12 @@ import { FacebookSdk } from "./instagram-graph-api/facebook-sdk";
 })
 export class AppComponent implements OnInit {
   fb: FacebookSdk = new FacebookSdk();
+  response: Function = () => {return this.fb.response }
+  // response: any;
 
   ngOnInit() {
     this.fb.loadSdk();
-    
+    // this.Render()
   }
 
   Login() {
@@ -24,10 +26,19 @@ export class AppComponent implements OnInit {
 
   GetStatus() {
     this.fb.GetStatus();
+    console.log(this.fb.response.status);
   }
 
-  TestApi(){
-    this.fb.testAPI();
+  TestApi() {
+    return new Promise((resolve, reject) => {
+      this.fb.testAPI();
+    }).then(() => console.log("ame", this.fb.response.name));
+    // this.fb.testAPI();
+    // console.log(this.fb.response.name);
+  }
+
+  Render() {
+    this.fb.RenderPlugins();
   }
 
   Info() {

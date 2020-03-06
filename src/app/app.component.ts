@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FacebookSdk } from "./instagram-graph-api/facebook-sdk";
+import { FbUser } from "./instagram-graph-api/fbUser";
 
 @Component({
   selector: "my-app",
@@ -7,42 +8,23 @@ import { FacebookSdk } from "./instagram-graph-api/facebook-sdk";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  fb: FacebookSdk = new FacebookSdk();
-  response: Function = () => {return this.fb.response }
-  // response: any;
+  //fb: FacebookSdk = new FacebookSdk();
+  user: FbUser;
 
   ngOnInit() {
-    this.fb.loadSdk();
-    // this.Render()
+    //this.fb.loadScript();
+    this.user = new FbUser();
   }
 
-  Login() {
-    this.fb.Login();
+  Login(){
+    this.user.fb.Login();
   }
 
-  Logout() {
-    this.fb.Logout();
+  Logout(){
+    this.user.Logout();
   }
 
-  GetStatus() {
-    this.fb.GetStatus();
-    console.log(this.fb.response.status);
-  }
-
-  TestApi() {
-    return new Promise((resolve, reject) => {
-      this.fb.testAPI();
-    }).then(() => console.log("ame", this.fb.response.name));
-    // this.fb.testAPI();
-    // console.log(this.fb.response.name);
-  }
-
-  Render() {
-    this.fb.RenderPlugins();
-  }
-
-  Info() {
-    console.log("info");
-    this.fb.info();
+  GetStatus(){
+    this.user.GetStatus();
   }
 }

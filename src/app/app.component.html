@@ -1,7 +1,26 @@
-
 <p>Root</p>
 
 <button (click)='Login()'>Login</button>
 <button (click)='Logout()'>Logout</button>
-<button (click)='GetStatus()'>Get status</button>
+<button (click)='GetLoginStatus()'>Get status</button>
 <button (click)='TestApi()'>Test API</button>
+<button (click)='InstaLogin()'>InstaLogin</button>
+<button (click)='fb.T1()'>T1</button>
+<button (click)='fb.GetPageInstagramBusinessAccount()'>GetPageInstagramBusinessAccount</button>
+<button (click)='fb.GetMedia()'>Get media</button>
+<button (click)='fb.GetCertainMedia()'>Get certain media</button>
+<button (click)='fb.BusinessDiscovery()'>Business Discovery</button>
+<button (click)='fb.Insights()'>Insights</button>
+
+<div class="card">
+	<p>name: {{fb.user.name || "undef"}}</p>
+	<p>id: {{fb.user.id || "undef"}}</p>
+	<p>FB page id: {{fb.user.fbPageId || "undef"}}</p>
+	<p>Insta id: {{fb.user.instaId || "undef"}}</p>
+
+	<p>token: {{fb.user.accessToken || "no token"}}</p>
+
+	<img src="{{fb.user.photoUrl}}"/>
+  <img src="{{fb.user.mediaUrl}}"/>
+
+</div>

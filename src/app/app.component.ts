@@ -8,23 +8,29 @@ import { FbUser } from "./instagram-graph-api/fbUser";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  //fb: FacebookSdk = new FacebookSdk();
-  user: FbUser;
+  fb: FacebookSdk = new FacebookSdk();
 
   ngOnInit() {
-    //this.fb.loadScript();
-    this.user = new FbUser();
+    this.fb.Init();
   }
 
-  Login(){
-    this.user.fb.Login();
+  Login() {
+    this.fb.Login();
   }
 
-  Logout(){
-    this.user.Logout();
+  Logout() {
+    this.fb.Logout();
   }
 
-  GetStatus(){
-    this.user.GetStatus();
+  GetLoginStatus() {
+    this.fb.GetLoginStatus();
+  }
+
+  TestApi() {
+    this.fb.TestApi();
+  }
+
+  InstaLogin() {
+    this.fb.InstaLogin();
   }
 }

@@ -129,12 +129,14 @@ export class FacebookSdk {
         response => {
           console.log("Logging in");
           console.log("response:", response);
+          let authResponse = response.authResponse;
+          this.user.accessToken = authResponse.accessToken;
           // user is now logged out
           resolve(response);
         },
         {
           //scope: "instagram_basic, pages_show_list",
-          scope: "instagram_basic, instagram_manage_insights, pages_show_list",
+          scope: "instagram_basic, instagram_manage_insights, pages_show_list, instagram_graph_user_media",
           return_scopes: true
         }
       );
@@ -149,9 +151,11 @@ export class FacebookSdk {
         }`,
         response => {
           console.log(response);
-          console.log(response.data[0].id);
 
-          this.user.fbPageId = response.data[0].id;
+          if (response.data.length != 0) {
+            console.log(response.data[0].id);
+            this.user.fbPageId = response.data[0].id;
+          }
           resolve(response);
         }
       );
@@ -177,7 +181,9 @@ export class FacebookSdk {
   GetMedia() {
     return new Promise(resolve => {
       FB.api(
-        `https://graph.facebook.com/v6.0/${this.user.instaId}/media?access_token=${this.user.accessToken}`,
+        `https://graph.facebook.com/v6.0/${
+          this.user.instaId
+        }/media?access_token=${this.user.accessToken}`,
         response => {
           console.log(response);
           console.log("media id");
@@ -207,11 +213,22 @@ export class FacebookSdk {
     ///17841405309211844?fields=business_discovery.username(${searchUser}){media{comments_count,like_count}}
     //${this.user.mediaId}?fields=business_discovery.username(${searchUser}){media{comments_count,like_count}}
     return new Promise(resolve => {
-      let searchUser = ["xander_uzzzer","dvi.tailor","oleksandr.lukhanin","bluebottle"];
-      let retFields="biography,id,ig_id,followers_count,follows_count,media_count,name,profile_picture_url,username,website,media{comments_count,like_count}";
+      let searchUser = [
+        "xander_uzzzer",
+        "dvi.tailor",
+        "oleksandr.lukhanin",
+        "bluebottle"
+      ];
+      let retFields =
+        "biography,id,ig_id,followers_count,follows_count,media_count,name,profile_picture_url,username,website,media{comments_count,like_count}";
       //FB.api(`https://graph.facebook.com/v6.0/${this.user.instaId}?fields=business_discovery.username(${searchUser}){followers_count,media_count,followers}&access_token=${this.user.accessToken}`,
       //FB.api(`${this.user.mediaId}?fields=business_discovery.username(${searchUser}){media{comments_count,like_count}}`,
-      FB.api(`https://graph.facebook.com/v6.0/${this.user.instaId}?fields=business_discovery.username(${searchUser[1]}){${retFields}}&access_token=${this.user.accessToken}`,
+      FB.api(
+        `https://graph.facebook.com/v6.0/${
+          this.user.instaId
+        }?fields=business_discovery.username(${
+          searchUser[2]
+        }){${retFields}}&access_token=${this.user.accessToken}`,
         response => {
           console.log(response);
           //this.user.mediaUrl = response.media_url;
@@ -225,10 +242,18 @@ export class FacebookSdk {
     //17841405680145516  dvi.tailor
     //17841405680145516
     return new Promise(resolve => {
-      let searchUser = ["xander_uzzzer","dvi.tailor","oleksandr.lukhanin","bluebottle"];
-      let retFields="biography,id,ig_id,followers_count,follows_count,media_count,name,profile_picture_url,username,website,media{comments_count,like_count}";
-     
-      FB.api(`https://graph.facebook.com/v6.0/17841402035974697/insights?metric=impressions,reach,profile_views&period=day`,
+      let searchUser = [
+        "xander_uzzzer",
+        "dvi.tailor",
+        "oleksandr.lukhanin",
+        "bluebottle"
+      ];
+      let retFields =
+        "biography,id,ig_id,followers_count,follows_count,media_count,name,profile_picture_url,username,website,media{comments_count,like_count}";
+
+      //FB.api(`https://graph.facebook.com/v6.0/17841402035974697/insights?metric=impressions,reach,profile_views&period=day`,
+      FB.api(
+        `https://graph.facebook.com/v6.0/17841405680145516/insights?metric=impressions,reach,profile_views&period=day`,
         response => {
           console.log(response);
           //this.user.mediaUrl = response.media_url;

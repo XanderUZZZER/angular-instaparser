@@ -227,7 +227,7 @@ export class FacebookSdk {
         `https://graph.facebook.com/v6.0/${
           this.user.instaId
         }?fields=business_discovery.username(${
-          searchUser[2]
+          searchUser[1]
         }){${retFields}}&access_token=${this.user.accessToken}`,
         response => {
           console.log(response);
